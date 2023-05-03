@@ -44,8 +44,10 @@ export const StartPage = () => {
   return (
 
     <div>
+      <h2>Keep fit!</h2>
+      <p>Choose a muscle group you would like to work on</p>
       {allBodyParts &&
-      <FormControl sx={{ m: 1, minWidth: 200 }}>
+      <FormControl sx={{ m: 2, minWidth: 200 }}>
         <InputLabel hidden htmlFor="body-parts">Select a muscle group</InputLabel>
         <Select
           aria-label="List of body parts"

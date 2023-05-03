@@ -11,10 +11,13 @@ export const workouts = createSlice({
   reducers: {
 
     setWorkoutSearch: (store, action) => {
-      store.workoutSearch = action.payload
+      store.workoutSearch = action.payload;
     },
     setBodyPartsSelect: (store, action) => {
-      store.bodyPartsSelect = action.payload
+      store.bodyPartsSelect = action.payload;
+    },
+    reset: (store) => {
+      store.bodyPartsSelect = []
     }
   }
 })

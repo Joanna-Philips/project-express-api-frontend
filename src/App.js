@@ -16,8 +16,7 @@ export const App = () => {
 
   return (
     <Provider store={store}>
-      <Container>
-        <h1>Hello from App!</h1>
+      <Container sx={{ backgroundColor: 'aliceblue', padding: 1, borderRadius: 1, height: '100vh' }}>
         <StartPage />
       </Container>
     </Provider>
