@@ -15,6 +15,7 @@ export const App = () => {
 
   return (
     <Provider store={store}>
+      <h1>Hello from App!</h1>
       <StartPage />
     </Provider>
   )

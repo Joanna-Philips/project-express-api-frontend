@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   workoutSearch: '',
-  bodyPartSelect: []
+  bodyPartsSelect: []
 }
 
 export const workouts = createSlice({
@@ -12,11 +12,9 @@ export const workouts = createSlice({
 
     setWorkoutSearch: (store, action) => {
       store.workoutSearch = action.payload
-    //   store.bodyPartSelect = []
     },
-    setAuthorSelect: (store, action) => {
-      store.bodyPartSelect = action.payload
-    //   store.workoutSearch = ''
+    setBodyPartsSelect: (store, action) => {
+      store.bodyPartsSelect = action.payload
     }
   }
 })
