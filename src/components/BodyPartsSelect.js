@@ -12,7 +12,7 @@ export const BodyPartsSelect = () => {
       .catch((error) => alert(error, 'error'))
     //   .finally(() => setLoading(false));
     console.log('fetch data bodyPartsSelect', bodyPartsList)
-  }, [bodyParts])
+  }, [])
 
   return (
     <div>

@@ -1,3 +1,4 @@
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable operator-linebreak */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -15,14 +16,29 @@ export const StartPage = () => {
     dispatch(workouts.actions.setBodyPartsSelect(event.target.value))
   }
 
+  // useEffect(() => {
+  //   // setLoading(true)
+  //   fetch('https://project-express-api-lldotyfewa-lz.a.run.app/workouts/all')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setAllWorkouts(data.body.workoutsData)
+  //       console.log('data', data)
+  //     })
+  //     .catch((error) => alert(error, 'error'))
+  //     // .finally(() => setLoading(false));
+  // }, [])
+
   useEffect(() => {
-    // setLoading(true)
     fetch('https://project-express-api-lldotyfewa-lz.a.run.app/workouts/all')
       .then((res) => res.json())
-      .then((data) => setAllWorkouts(data))
+      .then((data) => {
+        const uniqueBodyParts = data.body.workoutsData.filter((item, index, self) =>
+          index === self.findIndex((t) => (
+            t.BodyPart === item.BodyPart
+          )));
+        setAllWorkouts(uniqueBodyParts)
+      })
       .catch((error) => alert(error, 'error'))
-      // .finally(() => setLoading(false));
-    console.log('fetch data startpage', allWorkouts)
   }, [])
 
   return (
@@ -43,12 +59,14 @@ export const StartPage = () => {
             return (
               <option
                 key={item.Id}
-                value={item.BodyPart} />
+                value={item.BodyPart}>
+                {item.BodyPart}
+              </option>
             );
           })}
         </select>
       </div>}
-      {bodyParts.length > 1 ? <BodyPartsSelect /> : ''}
+      {bodyParts.length > 0 ? <BodyPartsSelect /> : ''}
     </div>
   )
 }
