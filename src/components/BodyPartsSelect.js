@@ -10,10 +10,6 @@ export const BodyPartsSelect = () => {
   const selectedBodyPart = useSelector((store) => store.workouts.bodyPartsSelect);
   const selectedBodyPartWorkouts = useSelector((store) => store.workouts.selectedBodyPartWorkouts);
 
-  // const resetStore = () => {
-  //   (dispatch(workouts.actions.reset()))
-  // }
-
   useEffect(() => {
     fetch(`https://project-express-api-lldotyfewa-lz.a.run.app/workouts?BodyPart=${selectedBodyPart}`)
       .then((res) => res.json())
@@ -38,7 +34,6 @@ export const BodyPartsSelect = () => {
                 <Typography sx={{ fontSize: 16, m: 1, fontWeight: 'bold' }}>{item.Title}</Typography>
                 <Typography sx={{ fontSize: 14, m: 1 }}>Muscle Group: {item.BodyPart}</Typography>
                 <Typography sx={{ fontSize: 14, m: 1 }}>Type: {item.Type}</Typography>
-                <Typography sx={{ fontSize: 14, m: 1 }}>Equipment: {item.Equipment}</Typography>
                 <Typography sx={{ fontSize: 14, m: 1 }}>Level: {item.Level}</Typography>
               </Paper>
             </div>

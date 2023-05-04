@@ -5,10 +5,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Select, MenuItem, InputLabel, FormControl, Typography, Card, CardMedia } from '@mui/material';
+import { Select, MenuItem, InputLabel, FormControl, Typography, Card, CardActionArea } from '@mui/material';
 import { workouts } from 'reducers/workouts';
-import { BodyPartsSelect } from './BodyPartsSelect';
 import { Loader } from './Loader';
+import { BodyPartsSelect } from './BodyPartsSelect';
 
 export const StartPage = () => {
   const dispatch = useDispatch();
@@ -41,18 +41,18 @@ export const StartPage = () => {
   }
 
   return (
-
     <div>
-      <Card sx={{ p: 1, m: 2 }}>
-        <CardMedia
-          sx={{ height: 150 }}
-          image="https://images.unsplash.com/photo-1556817411-58c45dd94e8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          title="green iguana" />
-        <Typography sx={{ fontSize: 20 }}>WORKOUT NOW</Typography>
-        <Typography sx={{ fontSize: 16 }}>Choose a muscle group you would like to work on</Typography>
-        {allBodyParts &&
+      <CardActionArea>
+        <Card sx={{ p: 1, m: 2 }}>
+          <Typography sx={{ fontSize: 16 }}>Choose a muscle group you would like to train</Typography>
+          {allBodyParts &&
       <FormControl sx={{ m: 2, minWidth: 200 }}>
-        <InputLabel htmlFor="body-parts" id="demo-simple-select-label" label="Select muscle group">Select a muscle group</InputLabel>
+        <InputLabel
+          htmlFor="body-parts"
+          id="demo-simple-select-label"
+          label="Select muscle group">
+          Select a muscle group
+        </InputLabel>
         <Select
           aria-label="List of body parts"
           value={selectBodyPart}
@@ -68,7 +68,8 @@ export const StartPage = () => {
           ))}
         </Select>
       </FormControl>}
-      </Card>
+        </Card>
+      </CardActionArea>
       {allBodyParts.length > 0 ? <BodyPartsSelect /> : ''}
     </div>
   )

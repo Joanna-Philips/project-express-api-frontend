@@ -27,9 +27,6 @@ export const workouts = createSlice({
     },
     setLoading: (store, action) => {
       store.isLoading = action.payload
-    },
-    reset: (store) => {
-      store.bodyPartsSelect = []
     }
   }
 })
