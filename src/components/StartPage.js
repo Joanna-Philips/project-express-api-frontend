@@ -5,7 +5,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Select, MenuItem, InputLabel, FormControl, Typography, Card, CardActionArea } from '@mui/material';
+import { Select, MenuItem, InputLabel, FormControl, Typography, Card, CardActionArea, Container } from '@mui/material';
 import { workouts } from 'reducers/workouts';
 import { Loader } from './Loader';
 import { BodyPartsSelect } from './BodyPartsSelect';
@@ -41,12 +41,12 @@ export const StartPage = () => {
   }
 
   return (
-    <div>
+    <Container sx={{ m: 0 }}>
       <CardActionArea>
         <Card sx={{ p: 1, m: 2 }}>
           <Typography sx={{ fontSize: 16 }}>Choose a muscle group you would like to train</Typography>
           {allBodyParts &&
-      <FormControl sx={{ m: 2, minWidth: 200 }}>
+      <FormControl sx={{ my: 2, minWidth: 200 }}>
         <InputLabel
           htmlFor="body-parts"
           id="demo-simple-select-label"
@@ -71,6 +71,6 @@ export const StartPage = () => {
         </Card>
       </CardActionArea>
       {allBodyParts.length > 0 ? <BodyPartsSelect /> : ''}
-    </div>
+    </Container>
   )
 }

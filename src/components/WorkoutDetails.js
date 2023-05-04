@@ -37,7 +37,12 @@ export const WorkoutDetails = () => {
           <Typography sx={{ fontSize: 16, m: 1 }}>
             Equipment: {selectedWorkout.Equipment}
           </Typography>
-          <Typography sx={{ fontSize: 16, m: 1 }}>Level: {selectedWorkout.Level}</Typography>
+          <Typography sx={{ fontSize: 16, m: 1 }}>
+            Level: {selectedWorkout.Level}
+          </Typography>
+          <Typography sx={{ fontSize: 16, m: 1 }}>
+            How it&apos;s done: {selectedWorkout.Desc}
+          </Typography>
           <Button variant="contained" sx={{ backgroundColor: 'greenyellow', color: 'black', my: 1 }} type="button" onClick={onBackButtonClick}>Back to List</Button>
         </Card>
       )}
