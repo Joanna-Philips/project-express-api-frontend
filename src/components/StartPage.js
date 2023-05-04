@@ -3,7 +3,7 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { workouts } from 'reducers/workouts';
@@ -11,8 +11,8 @@ import { BodyPartsSelect } from './BodyPartsSelect';
 
 export const StartPage = () => {
   const dispatch = useDispatch();
-  const [allBodyParts, setAllBodyParts] = useState([])
-  const bodyParts = useSelector((store) => store.workouts.bodyPartsSelect)
+  const allBodyParts = useSelector((store) => store.workouts.allBodyParts);
+  // const bodyParts = useSelector((store) => store.workouts.bodyPartsSelect)
 
   const selectBodyPart = (event) => {
     dispatch(workouts.actions.setBodyPartsSelect(event.target.value))
@@ -36,10 +36,10 @@ export const StartPage = () => {
       .then((data) => {
         const uniqueBodyParts = data.body.workoutsData.filter((item, index, self) =>
           index === self.findIndex((t) => (t.BodyPart === item.BodyPart)));
-        setAllBodyParts(uniqueBodyParts)
+        dispatch(workouts.actions.setAllBodyParts(uniqueBodyParts));
       })
       .catch((error) => alert(error, 'error'))
-  }, [])
+  }, []);
 
   return (
 
@@ -57,18 +57,14 @@ export const StartPage = () => {
           onChange={selectBodyPart}>
 
           {/* <MenuItem defaultValue>Select a muscle group</MenuItem> */}
-          {allBodyParts.map((item) => {
-            return (
-              <MenuItem
-                key={item.Id}
-                value={item.BodyPart}>
-                {item.BodyPart}
-              </MenuItem>
-            );
-          })}
+          {allBodyParts.map((item) => (
+            <MenuItem key={item.Id} value={item.BodyPart}>
+              {item.BodyPart}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>}
-      {bodyParts.length > 0 ? <BodyPartsSelect /> : ''}
+      {allBodyParts.length > 0 ? <BodyPartsSelect /> : ''}
     </div>
   )
 }
