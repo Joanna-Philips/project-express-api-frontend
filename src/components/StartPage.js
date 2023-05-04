@@ -26,7 +26,7 @@ export const StartPage = () => {
         dispatch(workouts.actions.setAllBodyParts(uniqueBodyParts));
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [dispatch]);
 
   return (
 

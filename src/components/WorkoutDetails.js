@@ -21,7 +21,7 @@ export const WorkoutDetails = () => {
         dispatch(workouts.actions.setSelectedWorkout(data.body.workoutsData));
       })
       .catch((error) => console.error(error));
-  }, [Id])
+  }, [Id, dispatch])
 
   return (
     <div>
