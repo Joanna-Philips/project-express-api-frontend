@@ -12,23 +12,10 @@ import { BodyPartsSelect } from './BodyPartsSelect';
 export const StartPage = () => {
   const dispatch = useDispatch();
   const allBodyParts = useSelector((store) => store.workouts.allBodyParts);
-  // const bodyParts = useSelector((store) => store.workouts.bodyPartsSelect)
 
   const selectBodyPart = (event) => {
     dispatch(workouts.actions.setBodyPartsSelect(event.target.value))
   }
-
-  // useEffect(() => {
-  //   // setLoading(true)
-  //   fetch('https://project-express-api-lldotyfewa-lz.a.run.app/workouts/all')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setAllWorkouts(data.body.workoutsData)
-  //       console.log('data', data)
-  //     })
-  //     .catch((error) => alert(error, 'error'))
-  //     // .finally(() => setLoading(false));
-  // }, [])
 
   useEffect(() => {
     fetch('https://project-express-api-lldotyfewa-lz.a.run.app/workouts/all')
@@ -38,7 +25,7 @@ export const StartPage = () => {
           index === self.findIndex((t) => (t.BodyPart === item.BodyPart)));
         dispatch(workouts.actions.setAllBodyParts(uniqueBodyParts));
       })
-      .catch((error) => alert(error, 'error'))
+      .catch((error) => console.error(error));
   }, []);
 
   return (
@@ -56,7 +43,6 @@ export const StartPage = () => {
           label="Select muscle group"
           onChange={selectBodyPart}>
 
-          {/* <MenuItem defaultValue>Select a muscle group</MenuItem> */}
           {allBodyParts.map((item) => (
             <MenuItem key={item.Id} value={item.BodyPart}>
               {item.BodyPart}
