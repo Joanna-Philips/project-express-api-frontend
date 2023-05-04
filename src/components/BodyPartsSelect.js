@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Paper } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import { workouts } from 'reducers/workouts';
+import styled from 'styled-components';
 
 export const BodyPartsSelect = () => {
   const dispatch = useDispatch();
@@ -23,21 +24,25 @@ export const BodyPartsSelect = () => {
       .catch((error) => console.error(error))
   }, [selectedBodyPart, dispatch])
 
+  const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
   return (
     <div>
       {selectedBodyPartWorkouts.length > 0 && selectedBodyPartWorkouts.map((item) => {
         return (
-          <Link to={`/workouts/${item.Id}`}>
+          <StyledLink to={`/workouts/${item.Id}`}>
             <div key={item.Id}>
-              <Paper elevation={3} sx={{ backgroundColor: 'pink', p: 1, m: 2 }}>
-                <h5>{item.Title}</h5>
-                <p>Muscle Group: {item.BodyPart}</p>
-                <p>Type: {item.Type}</p>
-                <p>Equipment: {item.Equipment}</p>
-                <p>Level: {item.Level}</p>
+              <Paper elevation={3} sx={{ backgroundColor: 'greenyellow', p: 1, m: 2 }}>
+                <Typography sx={{ fontSize: 16, m: 1, fontWeight: 'bold' }}>{item.Title}</Typography>
+                <Typography sx={{ fontSize: 14, m: 1 }}>Muscle Group: {item.BodyPart}</Typography>
+                <Typography sx={{ fontSize: 14, m: 1 }}>Type: {item.Type}</Typography>
+                <Typography sx={{ fontSize: 14, m: 1 }}>Equipment: {item.Equipment}</Typography>
+                <Typography sx={{ fontSize: 14, m: 1 }}>Level: {item.Level}</Typography>
               </Paper>
             </div>
-          </Link>
+          </StyledLink>
         )
       })}
     </div>

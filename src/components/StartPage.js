@@ -5,7 +5,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import { Select, MenuItem, InputLabel, FormControl, Typography, Card } from '@mui/material';
 import { workouts } from 'reducers/workouts';
 import { BodyPartsSelect } from './BodyPartsSelect';
 
@@ -31,18 +31,20 @@ export const StartPage = () => {
   return (
 
     <div>
-      <h2>Keep fit!</h2>
-      <p>Choose a muscle group you would like to work on</p>
-      {allBodyParts &&
+      <Card sx={{ p: 1, m: 2 }}>
+        <Typography sx={{ fontSize: 20 }}>ELEVATE YOUR WORKOUT GOALS</Typography>
+        <Typography sx={{ fontSize: 16 }}>Choose a muscle group you would like to work on</Typography>
+        {allBodyParts &&
       <FormControl sx={{ m: 2, minWidth: 200 }}>
-        <InputLabel hidden htmlFor="body-parts">Select a muscle group</InputLabel>
+        <InputLabel htmlFor="body-parts" id="demo-simple-select-label" label="Select muscle group">Select a muscle group</InputLabel>
         <Select
           aria-label="List of body parts"
-          value="body-parts"
+          value={selectBodyPart}
           name="body-parts"
           label="Select muscle group"
           onChange={selectBodyPart}>
 
+          <MenuItem defaultValue disabled> Select muscle group</MenuItem>
           {allBodyParts.map((item) => (
             <MenuItem key={item.Id} value={item.BodyPart}>
               {item.BodyPart}
@@ -50,6 +52,7 @@ export const StartPage = () => {
           ))}
         </Select>
       </FormControl>}
+      </Card>
       {allBodyParts.length > 0 ? <BodyPartsSelect /> : ''}
     </div>
   )

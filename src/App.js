@@ -18,7 +18,7 @@ export const App = () => {
 
   return (
     <BrowserRouter>
-      <Container sx={{ backgroundColor: 'aliceblue', padding: 1, borderRadius: 1, height: '100vh' }}>
+      <Container sx={{ backgroundColor: 'black', padding: 1, borderRadius: 1, height: '100vh', color: 'black' }}>
         <Provider store={store}>
 
           <Routes>

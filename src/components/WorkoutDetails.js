@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { workouts } from 'reducers/workouts';
+import { Button, Card, Typography } from '@mui/material';
 
 export const WorkoutDetails = () => {
   const { Id } = useParams();
@@ -25,14 +26,20 @@ export const WorkoutDetails = () => {
   return (
     <div>
       {selectedWorkout && (
-        <div>
-          <h5>{selectedWorkout.Title}</h5>
-          <p>Muscle Group: {selectedWorkout.BodyPart}</p>
-          <p>Type: {selectedWorkout.Type}</p>
-          <p>Equipment: {selectedWorkout.Equipment}</p>
-          <p>Level: {selectedWorkout.Level}</p>
-          <button type="button" onClick={onBackButtonClick}>Back to List</button>
-        </div>
+        <Card sx={{ p: 1, m: 2 }}>
+          <Typography sx={{ fontSize: 20, m: 1 }}>{selectedWorkout.Title}</Typography>
+          <Typography sx={{ fontSize: 16, m: 1 }}>
+            Muscle Group: {selectedWorkout.BodyPart}
+          </Typography>
+          <Typography sx={{ fontSize: 16, m: 1 }}>
+            Type: {selectedWorkout.Type}
+          </Typography>
+          <Typography sx={{ fontSize: 16, m: 1 }}>
+            Equipment: {selectedWorkout.Equipment}
+          </Typography>
+          <Typography sx={{ fontSize: 16, m: 1 }}>Level: {selectedWorkout.Level}</Typography>
+          <Button variant="contained" sx={{ backgroundColor: 'greenyellow', color: 'black', my: 1 }} type="button" onClick={onBackButtonClick}>Back to List</Button>
+        </Card>
       )}
     </div>
   );
