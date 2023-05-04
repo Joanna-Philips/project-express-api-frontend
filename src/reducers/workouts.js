@@ -4,7 +4,8 @@ const initialState = {
   allBodyParts: [],
   bodyPartsSelect: [],
   selectedBodyPartWorkouts: [],
-  selectedWorkout: {}
+  selectedWorkout: {},
+  isLoading: false
 }
 
 export const workouts = createSlice({
@@ -23,6 +24,9 @@ export const workouts = createSlice({
     },
     setSelectedWorkout: (store, action) => {
       store.selectedWorkout = action.payload;
+    },
+    setLoading: (store, action) => {
+      store.isLoading = action.payload
     },
     reset: (store) => {
       store.bodyPartsSelect = []

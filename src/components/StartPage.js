@@ -8,16 +8,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Select, MenuItem, InputLabel, FormControl, Typography, Card, CardMedia } from '@mui/material';
 import { workouts } from 'reducers/workouts';
 import { BodyPartsSelect } from './BodyPartsSelect';
+import { Loader } from './Loader';
 
 export const StartPage = () => {
   const dispatch = useDispatch();
   const allBodyParts = useSelector((store) => store.workouts.allBodyParts);
+  const isLoading = useSelector((store) => store.workouts.isLoading)
 
   const selectBodyPart = (event) => {
     dispatch(workouts.actions.setBodyPartsSelect(event.target.value))
   }
 
   useEffect(() => {
+    dispatch(workouts.actions.setLoading(true));
     fetch('https://project-express-api-lldotyfewa-lz.a.run.app/workouts/all')
       .then((res) => res.json())
       .then((data) => {
@@ -25,8 +28,17 @@ export const StartPage = () => {
           index === self.findIndex((t) => (t.BodyPart === item.BodyPart)));
         dispatch(workouts.actions.setAllBodyParts(uniqueBodyParts));
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => {
+        setTimeout(() => {
+          dispatch(workouts.actions.setLoading(false));
+        }, 1000);
+      })
   }, [dispatch]);
+
+  if (isLoading) {
+    return <Loader />
+  }
 
   return (
 

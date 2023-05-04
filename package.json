@@ -6,6 +6,7 @@
     "@babel/eslint-parser": "^7.18.9",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@mui/material": "^5.12.3",
     "@mui/styled-engine-sc": "^5.12.0",
     "@reduxjs/toolkit": "^1.9.5",
