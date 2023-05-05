@@ -24,8 +24,12 @@ export const StartPage = () => {
     fetch('https://project-express-api-lldotyfewa-lz.a.run.app/workouts/all')
       .then((res) => res.json())
       .then((data) => {
-        const uniqueBodyParts = data.body.workoutsData.filter((item, index, self) =>
-          index === self.findIndex((t) => (t.BodyPart === item.BodyPart)));
+        const uniqueBodyParts = data.body.workoutsData.reduce((acc, currentElement) => {
+          if (!acc.some((accElement) => accElement.BodyPart === currentElement.BodyPart)) {
+            acc.push(currentElement);
+          }
+          return acc;
+        }, []);
         dispatch(workouts.actions.setAllBodyParts(uniqueBodyParts));
       })
       .catch((error) => console.error(error))
